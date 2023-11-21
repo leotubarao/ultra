@@ -1,0 +1,148 @@
+.footer {
+	background-color: $footer;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+
+	&__links {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		background-color: $blue-strong;
+		width: 100%;
+		height: 100%;
+		padding: vw(15) 0 vw(25);
+		
+		@media (min-width: $size-desktop-min) {
+			height: vw(200);
+			padding: vw(35) 0 vw(35);
+			padding: 0;
+		}
+
+		&--column {
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			text-align: center;
+			
+			@media (min-width: $size-desktop-min) {
+				bottom: vw(10);
+				width: vw(520);
+				text-align: left;
+			}
+
+			p {
+				font-weight: bold;
+				font-size: vw(16);
+				line-height: vw(20);
+				text-transform: uppercase;
+				color: $white;
+				margin: 0;
+
+				@media (min-width: $size-desktop-min) {
+					margin: 0 0 vw(10) 0;
+				}
+			}
+
+			a {
+				font-weight: bold;
+				font-size: vw(16);
+				line-height: vw(20);
+				text-transform: uppercase;
+				margin: 0;
+				text-decoration: none;
+				color: $white;
+			}
+		}
+
+		&--row {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+
+			@media (min-width: $size-desktop-min) {
+				flex-direction: row;
+			}
+
+			a {
+				font-size: vw(15) !important;
+				line-height: vw(20) !important;
+				color: $white;
+				font-weight: 400 !important;
+				text-transform: none !important;
+
+				@media (max-width: $size-desktop-min) {
+					margin-top: vw(10);
+				}
+
+				span {
+					font-weight: bold;
+				}
+			}
+		}
+
+		&--wrapper {
+			width: vw(1440);
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-direction: column;
+			
+			@media (min-width: $size-desktop-min) {
+				margin-top: vw(15);
+				flex-direction: row;
+			}
+
+			.certificado {
+				width: vw(133);
+				height: vw(76);
+			}
+
+			.contato {
+				position: relative;
+				bottom: 0;
+			}
+
+			.ultragaz {
+				width: vw(217);
+				height: vw(96);
+			}
+
+			.cdf {
+				width: vw(122);
+				height: vw(41);
+			}
+
+			span {
+				font-size: vw(13);
+				line-height: vw(20);
+				color: #ffffff;
+				font-weight: 600;
+				margin: vw(6) 0;
+
+				@media (min-width: $size-desktop-min) {
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	&__social {
+		height: vw(90);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: vw(10);
+			width: vw(55);
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+}

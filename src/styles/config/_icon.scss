@@ -1,0 +1,47 @@
+.icon{
+    display: inline-block;
+    background: no-repeat;
+    background-size: contain;
+    width: vw(28);
+    height: vw(28);
+    margin-right: vw(6);
+    vertical-align: middle;
+
+    &--copy{
+        background-image: url(../static/images/icon__copy--black.png);
+        margin-top: vw(-3);
+
+        &:first-child:last-child{
+            margin-right: vw(6) !important;
+        }
+    }
+
+    &--check{
+        background-image: url(../static/images/icon__check--white.svg);
+        margin-top: vw(-3);
+    }
+
+    &--clock{
+        background-image: url(../static/images/icon__clock--white.svg);
+        margin-top: vw(-3);
+    }
+
+    &--edit{
+        background-image: url(../static/images/icon__edit--white.svg);
+        margin-top: vw(-3);
+    }
+
+    &--location{
+        background-image: url(../static/images/icon__location--white.svg);
+        margin-top: vw(-3);
+    }
+
+    &--plus{
+        background-image: url(../static/images/icon__plus--white.svg);
+        margin-top: vw(-3);
+    }
+
+    &:first-child:last-child{
+        margin-right: 0;
+    }
+}

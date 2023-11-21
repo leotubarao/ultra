@@ -1,0 +1,97 @@
+/* -------------------
+---- COLORS
+------------------- */
+
+$black: #323232;
+$white: #fff;
+$ice: #eaeaea;
+$ice-strong: #d3d3d3;
+$gray: #848484;
+$gray-light: #cccccc;
+$gray-strong: #333;
+$gray-dark: #222;
+
+$red: #dc0b25;
+$red-strong: darken($red, 15%);
+$green: #4dac27;
+$blue-strong: #000fff;
+$blue: $blue-strong;
+$cyan: #00ffff;
+
+$primary: $blue !default;
+$primary-dark: $blue-strong !default;
+$secondary: $red !default;
+$secondary-dark: $red !default;
+
+$title: #2d2d2d;
+$subtitle-text: $white;
+$text: $white;
+$text-dark: $black;
+$placeholder: #cccccc;
+$background-secondary: #e3e3e3;
+$border: #e4e4e4;
+$highlight: #3cfff4;
+
+$footer: $white;
+
+/* -------------------
+---- TABLES 
+------------------- */
+
+$table-border: #dfdfdf;
+$table-alternate: #eaeaea;
+$table-background: #a9a9a9;
+$table-highlight: #969696;
+$table-dark: #4c4c4c;
+
+/* -------------------
+---- MEDIA QUERIES
+------------------- */
+
+$layout-mobile: 404px;
+$layout-tablet: 1920px;
+$layout-desktop: 1920px;
+
+$layout-desktop-from: 640px;
+$layout-desktop-from: 1920px;
+
+$size-mobile: 640px;
+$size-mobile-min: 0px;
+$size-tablet-min: 720px;
+$size-old-desktop-min: 920px;
+$size-desktop-min: 1025px;
+
+$size-desktop: 1920px;
+$size-desktop-full: 1240px;
+$size-desktop-fullhd: 1280px;
+
+$size-retina: 1920px;
+$footerHeight: 0.85rem;
+
+/* -------------------
+---- FONTS
+------------------- */
+
+$font: 'Helvetica', Arial, Helvetica;
+$font2: 'Work Sans', Arial, Helvetica;
+
+// Unidade de conversão de pixel para vw e vw para rem
+// utilizamos 1000 para corrigir problema com font-size minimo em mobiles
+// onde o font-size será: [vw = (pixel / layout-size) * convert-base]
+// e as propriedades que utilizam vw sera convertidas em: [rem = pixel / (convert-base / 10)]
+$convert-base: 1000;
+
+@mixin system-gradient {
+	@if not mixin-exists(custom-gradient) {
+		background: rgba(29, 114, 184, 1);
+		background: -moz-linear-gradient(left, rgba(29, 114, 184, 1) 0%, rgba(229, 0, 69, 1) 51%, rgba(143, 141, 196, 1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(29, 114, 184, 1)), color-stop(51%, rgba(229, 0, 69, 1)), color-stop(100%, rgba(143, 141, 196, 1)));
+		background: -webkit-linear-gradient(left, rgba(29, 114, 184, 1) 0%, rgba(229, 0, 69, 1) 51%, rgba(143, 141, 196, 1) 100%);
+		background: -o-linear-gradient(left, rgba(29, 114, 184, 1) 0%, rgba(229, 0, 69, 1) 51%, rgba(143, 141, 196, 1) 100%);
+		background: -ms-linear-gradient(left, rgba(29, 114, 184, 1) 0%, rgba(229, 0, 69, 1) 51%, rgba(143, 141, 196, 1) 100%);
+		background: linear-gradient(to right, rgba(29, 114, 184, 1) 0%, rgba(229, 0, 69, 1) 51%, rgba(143, 141, 196, 1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1d72b8', endColorstr='#8f8dc4', GradientType=1);
+	} @else {
+		@include custom-gradient;
+	}
+}

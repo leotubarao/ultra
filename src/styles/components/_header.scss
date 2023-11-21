@@ -1,0 +1,72 @@
+.header {
+	height: vw(80);
+	@include gradientBgTopDown();
+	display: flex;
+	justify-content: center;
+
+	&__wrapper {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		width: vw(1440);
+	}
+
+	&__menu {
+		margin-right: vw(35);
+		width: vw(22);
+		height: vw(22);
+		display: flex;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	&__logo {
+		margin: 0 0 0 vw(20);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		@media (min-width: $size-desktop-min) {
+			margin: 0 0 0 vw(40);
+		}
+
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}		
+
+		img {
+			width: vw(162);
+			height: vw(47);
+		}
+	}
+
+	&__icons {
+		display: flex;
+		font-family: Helvetica;
+		font-style: normal;
+		font-weight: bold;
+		font-size: vw(18);
+ 		color: $white;
+	}
+
+	&__icon {
+		a {
+			display: flex;
+			margin-right: vw(48);
+			color: white;
+			text-decoration: none;
+			justify-content: center;
+			align-items: center;
+		}
+
+		img {
+			margin-right: vw(18);
+			width: vw(28);
+			height: vw(28);
+		}
+	}
+}

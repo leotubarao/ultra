@@ -1,0 +1,75 @@
+.stepper {
+	margin: vw(20) vw(10) vw(50);
+	width: 92%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	@media (min-width: $size-desktop-min) {
+		margin: vw(20) vw(10) vw(40);
+		width: 97%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	p {
+		font-size: vw(10);
+		line-height: vw(20);
+		font-weight: bold;
+		text-transform: uppercase;
+		color: $blue-strong;
+		margin: 0;
+	}
+
+	.step1 {
+		position: absolute;
+		font-weight: bold;
+		font-size: vw(14);
+		line-height: vw(20);
+		text-transform: uppercase;
+		color: $black;
+		margin-top: vw(5);
+	}
+
+	.step2 {
+		position: absolute;
+		font-weight: bold;
+		font-size: vw(14);
+		line-height: vw(20);
+		text-transform: uppercase;
+		color: $black;
+		transform: translate(-50%, 0px);
+		margin-top: vw(5);
+	}
+
+	&__icon {
+		width: vw(49);
+		height: vw(49);
+		border: 1px solid black;
+		border-radius: 99px;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+
+		span {
+			color: black;
+			margin-bottom: vw(10);
+		}
+	}
+
+	.active {
+		@include gradientBg();
+		border: none;
+
+		span {
+			color: white;
+		}
+	}
+
+	&__line {
+		height: 1px;
+		width: calc(100% - 0.98rem);
+		background-color: black;
+	}
+}

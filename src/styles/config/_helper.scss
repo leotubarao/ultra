@@ -1,0 +1,461 @@
+.button {
+	font-family: $font;
+	font-size: vw(16);
+	font-weight: 800;
+	// line-height: vw(20);
+
+	transition: color 0.3s 0.1s ease-in-out;
+	position: relative;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: vw(40);
+	min-width: vw(150);
+	color: $white;
+	overflow: hidden;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	white-space: nowrap;
+	border: 0;
+	border-radius: vw(6);
+	box-sizing: border-box;
+
+	&:after,
+	&:before {
+		content: '';
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1;
+		background: $secondary;
+		border-radius: vw(6);
+		border: 1px solid $secondary;
+		box-sizing: border-box;
+	}
+
+	&:before {
+		transition: opacity 0.2s 0.1s ease-in-out, top 0.3s ease-in-out;
+
+		opacity: 0;
+		top: 150%;
+		width: 100%;
+		background: $white;
+		z-index: 2;
+	}
+
+	span {
+		position: relative;
+		text-indent: 0;
+		z-index: 3;
+
+		&.align-left {
+			margin: 0 auto 0 vw(28);
+			text-align: left;
+
+			&:not(:first-child):last-child {
+				margin: 0 auto 0 vw(68);
+			}
+		}
+
+		&.align-right {
+			margin: 0 vw(28) 0 auto;
+			text-align: right;
+
+			&:not(:last-child):first-child {
+				margin: 0 vw(68) 0 auto;
+			}
+		}
+	}
+
+	svg,
+	.icon {
+		transition: fill 0.4s ease-in-out, stroke 0.4s ease-in-out;
+		display: block;
+		// width: vw(7.5);
+		// height: vw(14);
+		position: absolute;
+		z-index: 4;
+		fill: $white;
+		stroke: $white;
+		top: 50%;
+		transform: translate(0, -50%);
+
+		&:first-child {
+			left: vw(24);
+		}
+
+		&:last-child {
+			right: vw(24);
+		}
+
+		& + span {
+			margin-left: vw(40);
+		}
+	}
+
+	.icon {
+		transition: color 0.4s ease-in-out, border-color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+	}
+
+	&:not(:disabled):hover,
+	input[type='radio']:not(:disabled):checked ~ &,
+	input[type='checkbox']:not(:disabled):checked ~ & {
+		color: $secondary;
+
+		&:before {
+			transition: opacity 0.2s ease-in-out, top 0.3s ease-in-out;
+			top: 50%;
+			opacity: 1;
+		}
+
+		svg {
+			fill: $secondary;
+			stroke: $secondary;
+		}
+
+		.icon {
+			border-color: $secondary;
+			color: $secondary;
+		}
+	}
+
+	input[type='radio']:not(:disabled):checked ~ &,
+	input[type='checkbox']:not(:disabled):checked ~ & {
+		.icon {
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+
+	&--white {
+		color: $black;
+		&:after {
+			background: $white;
+			border-color: $black;
+		}
+		&:before {
+			background: $black;
+			border-color: $black;
+		}
+		svg {
+			fill: $black;
+			stroke: $black;
+		}
+		&:not(:disabled):hover,
+		input[type='radio']:not(:disabled):checked ~ &,
+		input[type='checkbox']:not(:disabled):checked ~ & {
+			color: $white;
+			&:after,
+			&:before {
+				// background: $secondary;
+			}
+			svg {
+				fill: $white;
+				stroke: $white;
+			}
+			.icon {
+				border-color: $white;
+				color: $white;
+			}
+		}
+	}
+
+	&--white-bordered {
+		color: $white;
+		&:after {
+			background: $black;
+			border-color: $black;
+		}
+		&:before {
+			background: $white;
+			border-color: $black;
+		}
+		svg {
+			fill: $white;
+			stroke: $white;
+		}
+		&:not(:disabled):hover,
+		input[type='radio']:not(:disabled):checked ~ &,
+		input[type='checkbox']:not(:disabled):checked ~ & {
+			color: $black;
+			&:after,
+			&:before {
+				// background: $secondary;
+			}
+			svg {
+				fill: $black;
+				stroke: $black;
+			}
+			.icon {
+				border-color: $black;
+				color: $black;
+			}
+		}
+	}
+
+	&--black {
+		color: $white;
+		&:after {
+			background: $black;
+			border-color: $black;
+		}
+		&:before {
+			background: $white;
+			border-color: $black;
+		}
+		svg {
+			fill: $white;
+			stroke: $white;
+		}
+		&:not(:disabled):hover,
+		input[type='radio']:not(:disabled):checked ~ &,
+		input[type='checkbox']:not(:disabled):checked ~ & {
+			color: $black;
+			&:after,
+			&:before {
+				// background: $secondary;
+			}
+			svg {
+				fill: $black;
+				stroke: $black;
+			}
+			.icon {
+				border-color: $black;
+				color: $black;
+			}
+		}
+	}
+
+	&--black-bordered {
+		color: $black;
+		&:after {
+			background: $white;
+			border-color: $black;
+		}
+		&:before {
+			background: $black;
+			border-color: $black;
+		}
+		svg {
+			fill: $black;
+			stroke: $black;
+		}
+		&:not(:disabled):hover,
+		input[type='radio']:not(:disabled):checked ~ &,
+		input[type='checkbox']:not(:disabled):checked ~ & {
+			color: $white;
+			&:after,
+			&:before {
+				// background: $secondary;
+			}
+			svg {
+				fill: $white;
+				stroke: $white;
+			}
+			.icon {
+				border-color: $white;
+				color: $white;
+			}
+		}
+	}
+
+	&--disabled {
+		cursor: default;
+		outline: none;
+
+		color: $gray;
+		&:after {
+			background: $ice;
+			border-color: $ice;
+		}
+		&:before {
+			background: $ice;
+			border-color: $ice;
+		}
+		svg {
+			fill: $green;
+			stroke: $green;
+		}
+		&:not(:disabled):hover,
+		input[type='radio']:not(:disabled):checked ~ &,
+		input[type='checkbox']:not(:disabled):checked ~ & {
+			color: $gray;
+			&:after,
+			&:before {
+				// background: $secondary;
+			}
+			svg {
+				fill: $green;
+				stroke: $green;
+			}
+			.icon {
+				border-color: $green;
+				color: $green;
+			}
+		}
+	}
+
+	&--link-blue {
+		color: $blue-strong;
+		&:after {
+			background: $white;
+			border-color: $white;
+		}
+		&:before {
+			background: $blue-strong;
+			border-color: $blue-strong;
+		}
+		&:not(:disabled):hover {
+			color: $white;
+			&:after,
+			&:before {
+				// background: $secondary;
+			}
+		}
+	}
+	&--link-black {
+		color: $black;
+		&:after {
+			background: $white;
+			border-color: $white;
+		}
+		&:before {
+			background: $black;
+			border-color: $black;
+		}
+		&:not(:disabled):hover {
+			color: $white;
+			&:after,
+			&:before {
+				// background: $secondary;
+			}
+		}
+	}
+}
+
+.button--small {
+	height: vw(42);
+	font-size: vw(16);
+}
+
+.formbutton {
+	@extend .button;
+	font-size: vw(15);
+}
+
+.formbuttoninvert {
+	@extend .button;
+	font-size: vw(15);
+}
+
+@media (min-width: $size-desktop-min) {
+	.only-mobile {
+		display: none !important;
+	}
+}
+
+@media (max-width: $size-desktop-min - 1) {
+	.only-desktop {
+		display: none !important;
+	}
+}
+
+.split {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: center;
+
+	@media (min-width: $size-tablet-min + 1) {
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+// altera cor de placeholder
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+// altera cor do scroll
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: $primary-dark;
+	border-radius: 99px;
+}
+
+// remove scrollbar para mobile
+@media (max-width: $size-desktop-min) {
+	html {
+		overflow: scroll;
+		overflow-x: hidden;
+	}
+	::-webkit-scrollbar {
+		width: 0px;
+		background: transparent;
+	}
+}
+
+a {
+	transition: 0.4s;
+
+	&:hover {
+		filter: brightness(125%);
+	}
+}
+
+button {
+	transition: 0.4s;
+
+	&:disabled {
+		filter: brightness(75%);
+	}
+}
+
+.is-opened {
+	transform: translateY(0) !important;
+	transform: translateX(0) !important;
+	-moz-transform: translateY(0) !important;
+	-moz-transform: translateX(0) !important;
+}
+
+.left-aligned {
+	margin-right: auto !important;
+}
+
+.no-margin {
+	margin: 0 !important;
+}
+
+::placeholder {
+	color: $black;
+	opacity: 1;
+}
+
+::-ms-input-placeholder {
+	color: $black;
+}
+
+::-ms-input-placeholder {
+	color: $black;
+}

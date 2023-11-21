@@ -1,0 +1,1688 @@
+//estrutura de uso
+//   - component-form
+//       ? formtab
+//       - formheader
+//       - fieldgroup
+//           - fieldlabel
+//               - span (Nome)
+//               - fieldtext|fieldtextarea|fieldtextaudio|fieldradio|fieldcheckbox|fieldselect
+//           - fieldlabel ...
+//       - fieldgroup
+//           - fieldlabel
+//               - span (Selecione os campos)
+//               - fieldlist
+//                   - fieldlabel
+//                       - fieldcheckbox|fieldradio
+//                       - fieldcheckbox-label (Item 1)
+//                   - fieldlabel ...
+//       - formerrors|formsuccess
+//       - formnavigation
+//           - fieldlink
+//           - fieldbutton
+
+$field-icon-valid-image: url(../static/images/form-icons/icon__valid.svg);
+$field-icon-error-image: url(../static/images/form-icons/icon__error.svg);
+
+$field-radio-image: none;
+$field-radio-checked-image: url(../static/images/form-icons/icon__check.svg);
+
+$field-checkbox-image: none;
+$field-checkbox-checked-image: url(../static/images/form-icons/icon__check.svg);
+
+// $field-select-image: url(../static/images/form-icons/icon__select.svg);
+// $field-select-open-image: url(../static/images/form-icons/icon__select.svg);
+$field-select-image: url('');
+$field-select-open-image: url('');
+
+$message-font-color: $gray;
+$warning-font-color: $gray;
+$label-font-color: $black;
+$label-top-font-color: $black;
+$label-high-font-color: $black;
+$error-font-color: $red;
+$success-font-color: $black;
+$require-font-color: $black;
+$require-top-font-color: $black;
+$field-font-color: $blue-strong;
+$link-font-color: $black;
+
+$field-border-color: $gray-light;
+$field-background-color: $white;
+
+$field-under-border-color: $gray-light;
+
+$field-error-border-color: $red;
+$field-error-background-color: $white;
+
+$field-valid-border-color: $gray-light;
+$field-valid-background-color: $white;
+
+$field-checkbox-border-color: $gray;
+$field-checkbox-background-color: $white;
+
+$field-checked-border-color: $black;
+$field-checked-background-color: $green;
+
+$spacer-color: $gray-light;
+
+$common-space: 8;
+$single-space: 16;
+$double-space: 32;
+
+$title-font-size: 36;
+$title-font-size-mobile: 28;
+
+$description-font-size: 18;
+$description-font-size-mobile: 18;
+
+$subtitle-font-size: 36;
+$subtitle-font-size-mobile: 26;
+
+$subdescription-font-size: 18;
+$subdescription-font-size-mobile: 18;
+
+//fonts para wrapper de sucesso, erro e descricao...
+$text-font-size: 16;
+$text-font-size-mobile: 16;
+
+//font para erro individual
+$error-font-size: 12;
+$error-font-size-mobile: 10;
+
+//fonte dos labes
+$label-font-size: 18;
+$label-font-size-mobile: 18;
+
+//fonte quando existir animacao de label
+$label-place-font-size: 12;
+$label-place-font-size-mobile: 12;
+
+//tamanho  dos campos
+$field-height: 42;
+$field-place-height: 56;
+
+$field-checked-size: 20;
+
+$field-radius: 6;
+$field-place-radius: 6;
+
+$field-icon-size: 20;
+
+$field-spacing: 40;
+
+$field-vertical-padding: 0;
+$field-horizontal-padding: 16;
+
+$field-textarea-vertical-padding: 16;
+$field-textarea-horizontal-padding: 16;
+
+$field-select-vertical-padding: 5;
+$field-select-horizontal-padding: 16;
+
+//fonte dos campos
+$field-font-size: 16;
+$field-font-size-mobile: 16;
+
+//fonte para campos menores
+$field-small-font-size: 16;
+$field-small-font-size-mobile: 16;
+
+//fonte para campos dentro de lista
+$field-list-font-size: 16;
+$field-list-font-size-mobile: 16;
+
+//botoes e links
+$link-font-transform: uppercase;
+$link-font-decoration: none;
+$link-font-weight: bold;
+
+$buttonclass: '.formbutton';
+$buttonclassbig: '.formbutton';
+$buttonclassinvert: '.formbuttoninvert';
+
+$step-color: $white;
+$border-primary: $black;
+$primary-hover: $blue-strong;
+/*
+*
+*
+ATENCAO
+*
+*
+Pequenos ajustes de posicionamentos devem ser feitos de preferencia em outro arquivo css...
+*
+*
+*
+*
+*
+*
+*
+*
+*/
+
+.component-form {
+	position: relative;
+
+	/* reset */
+	fieldset {
+		display: flex;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	/* elemento para lista de mensagem de erro geral (tipo retorno backend) */
+	.formmessage {
+		font-size: vw($text-font-size);
+		line-height: vw(35);
+		color: $message-font-color;
+		margin-bottom: vw($double-space);
+
+		@media (max-width: $size-desktop-min) {
+			font-size: vw($text-font-size-mobile);
+		}
+
+		&--small {
+			font-size: vw($text-font-size * 0.9);
+			line-height: vw(35);
+
+			@media (max-width: $size-desktop-min) {
+				font-size: vw($text-font-size-mobile * 0.9);
+			}
+		}
+
+		em {
+			font-weight: bold;
+		}
+	}
+
+	/* elemento para mensagem de atencao (*voce precisa aceitar os termos)*/
+	.formwarning {
+		font-size: vw($error-font-size);
+		color: $warning-font-color;
+		margin-top: vw($common-space);
+
+		@media (max-width: $size-desktop-min) {
+			font-size: vw($error-font-size-mobile);
+		}
+	}
+
+	/* elemento para definir cabecalho do formulario*/
+	.formheader {
+		font-family: $font;
+		text-align: center;
+		margin-bottom: vw($double-space);
+
+		&__title {
+			font-size: vw($title-font-size);
+			line-height: 1.4em;
+			font-weight: 600;
+			margin: 0;
+
+			@media (max-width: $size-desktop-min) {
+				font-size: vw($title-font-size-mobile);
+			}
+		}
+
+		&__description {
+			font-size: vw($description-font-size);
+			line-height: vw(22);
+			font-weight: normal;
+
+			@media (max-width: $size-desktop-min) {
+				font-size: vw($description-font-size-mobile);
+			}
+		}
+	}
+
+	/* elemento para agrupar campos lado a lado ou unicos */
+	.fieldgroup {
+		display: flex;
+		flex-flow: row nowrap;
+		margin: 0 0 vw($single-space);
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&-small {
+			.fieldtext {
+				font-size: vw($field-small-font-size);
+
+				@media (max-width: $size-desktop-min) {
+					font-size: vw($field-small-font-size-mobile);
+				}
+			}
+
+			.fieldselect {
+				select {
+					font-size: vw($field-small-font-size);
+
+					@media (max-width: $size-desktop-min) {
+						font-size: vw($field-small-font-size-mobile);
+					}
+				}
+			}
+		}
+
+		// &:not(.preventclear){
+		//     @media (max-width: $size-desktop-min) {
+		display: block;
+		flex: none;
+
+		label,
+		.fieldlabel {
+			& + label,
+			& + .fieldlabel {
+				margin-top: vw($single-space / 2);
+			}
+		}
+		//     }
+		// }
+	}
+
+	/* elemento para criar listagem de campos tipo radio/checkbox*/
+	.fieldlist {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: flex-start;
+		align-items: flex-start;
+		margin-top: vw(-$common-space);
+
+		input[type='radio'],
+		input[type='checkbox'] {
+			margin-right: vw($common-space);
+		}
+
+		.fieldlabel {
+			margin-top: vw($single-space);
+
+			.fieldtext {
+				border-width: 1px;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+				border-radius: 0;
+
+				width: 100%;
+				margin-top: vw(4);
+				padding-top: 0;
+				padding-bottom: vw(4);
+				height: vw(20);
+
+				font-size: vw($field-list-font-size);
+
+				@media (max-width: $size-desktop-min) {
+					font-size: vw($field-list-font-size-mobile);
+				}
+			}
+		}
+	}
+
+	/* elemento para dividir conteudo e/ou botoes de navegacao*/
+	.formsplit,
+	.formnavigation {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 0 vw(30);
+
+		&--align-between {
+			@extend .split;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0;
+
+			.fieldbutton {
+				width: auto;
+				min-width: auto;
+				padding: 0 vw(30);
+			}
+
+			@media (max-width: $size-desktop-min) {
+				justify-content: space-between;
+			}
+		}
+
+		&--align-center {
+			@extend .split;
+			flex-flow: column nowrap;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&--align-right {
+			@extend .split;
+			justify-content: flex-end;
+
+			.fieldbutton {
+				width: auto;
+				align-self: flex-end;
+			}
+		}
+
+		.fieldbutton + .fieldlink {
+			margin-top: vw(30);
+		}
+	}
+
+	label,
+	.fieldlabel {
+		/* modificador para labels vazios, apenas criar espaco*/
+		&.fill-space {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+		}
+
+		position: relative;
+		display: inline-block;
+
+		&.fluid {
+			display: block;
+			min-width: 100%;
+		}
+
+		@media (max-width: $size-desktop-min) {
+			width: 100%;
+		}
+
+		/* modificador para colocar label ao lado dos campos*/
+		&.aside {
+			position: relative;
+			display: flex;
+			align-items: baseline;
+
+			@media (max-width: $size-desktop-min) {
+				display: block;
+				width: 100%;
+			}
+
+			span {
+				width: 20%;
+
+				@media (max-width: $size-desktop-min) {
+					width: 100%;
+				}
+			}
+
+			.fieldtext,
+			.fieldtextarea,
+			.fieldtextaudio,
+			.fieldselect {
+				width: 80%;
+
+				@media (max-width: $size-desktop-min) {
+					width: 100%;
+				}
+			}
+
+			span.error {
+				left: 20%;
+				font-size: vw(14);
+				color: $error-font-color;
+				text-transform: none;
+				width: auto;
+				bottom: vw(-24);
+
+				@media (max-width: $size-desktop-min) {
+					right: 0;
+					top: 0.05rem;
+					left: auto;
+					bottom: auto;
+				}
+			}
+
+			&.labelradio {
+				height: auto;
+				align-self: flex-end;
+
+				span {
+					width: auto;
+				}
+
+				span.error {
+					left: 0;
+				}
+			}
+		}
+
+		/* modificador para criar estilo de upload de foto para perfil*/
+		&.photo {
+			width: 100%;
+			position: relative;
+			text-align: center;
+			margin: 0 auto vw($double-space);
+
+			&.fineupload {
+				&:hover {
+					.cover:before {
+						content: ' ';
+					}
+				}
+			}
+
+			span {
+				text-align: center;
+			}
+
+			img {
+				// position: relative;
+				z-index: 0;
+				display: inline-block;
+				cursor: default;
+				text-align: center;
+				// width: vw(200);
+				// height: vw(200);
+				// border-radius: 100vw;
+				// border: 1px solid transparent;
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+				transform: scale(1.1);
+			}
+
+			.cover {
+				display: block;
+				border: 1px solid transparent;
+				border-radius: 50%;
+				height: vw(104);
+				overflow: hidden;
+				position: relative;
+				width: vw(104);
+				margin: 0 auto vw(25);
+
+				&:before {
+					line-height: vw(104);
+					content: attr(data-value);
+					font-family: $font;
+					color: $white;
+					font-size: vw(45);
+					font-weight: 800;
+					background-position: center;
+					cursor: pointer;
+					display: inline-block;
+					height: 100%;
+					left: 0;
+					opacity: 0.9;
+					position: absolute;
+					text-align: center;
+					vertical-align: middle;
+					top: 0;
+					width: 100%;
+					z-index: 0;
+					background: #bfddf1;
+					transform: scale(1.1);
+				}
+			}
+
+			input {
+				text-align: center;
+				display: inline-block;
+				position: absolute;
+				z-index: 1;
+				width: 100%;
+				height: vw(200);
+				top: 0;
+				left: 0;
+				opacity: 0;
+				cursor: default;
+			}
+
+			button {
+				@extend #{$buttonclass};
+			}
+
+			&--clean {
+				margin-bottom: 0;
+				overflow: hidden;
+
+				.cover {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		> span {
+			transition: color 0.4s ease-in-out;
+
+			font-family: $font;
+			display: block;
+			margin: 0 0 vw($common-space);
+			color: $label-font-color;
+			font-size: vw($label-font-size);
+
+			strong {
+				color: $label-high-font-color;
+				font-weight: 800;
+			}
+
+			em {
+				display: inline-block;
+				font-size: vw($label-font-size * 1.1);
+				color: $label-high-font-color;
+				margin: vw(30) 0 vw(14);
+			}
+
+			small {
+				font-size: vw($label-font-size * 0.9);
+			}
+
+			i {
+				transition: opacity 0.4s ease-in-out;
+				font-style: normal;
+				color: $require-font-color;
+				opacity: 1;
+			}
+
+			@media (max-width: $size-desktop-min) {
+				margin: 0 0 vw($common-space);
+
+				font-size: vw($label-font-size-mobile);
+
+				em {
+					font-size: vw($label-font-size-mobile * 1.1);
+				}
+
+				small {
+					font-size: vw($label-font-size-mobile * 0.9);
+				}
+			}
+		}
+
+		em {
+			color: $label-high-font-color;
+			font-style: normal;
+
+			@media (max-width: $size-desktop-min) {
+			}
+		}
+
+		/* modificador para esconder label de select*/
+		&.hiddenlabel {
+			> span,
+			> .fieldlabel {
+				display: none;
+			}
+		}
+
+		&.hiddenerror {
+			span.error {
+				display: none !important;
+				visibility: hidden;
+			}
+		}
+
+		/* modificador para colocar label acima dos campos, tipo placeholder com animacao*/
+		&.placelabel {
+			$inputsize: $field-place-height;
+			border-radius: vw($field-place-radius);
+
+			> span:first-child() {
+				transition: top 0.2s ease-in, font-size 0.2s ease-in, color 0.4s ease-in;
+				position: absolute;
+				top: vw($inputsize * 0.32);
+				left: calc(#{vw($field-horizontal-padding)} + 1px);
+				pointer-events: none;
+				z-index: 2;
+			}
+
+			&.ontop > span:first-child() {
+				top: vw($inputsize * 0.18);
+				font-size: vw($label-place-font-size);
+				color: $label-top-font-color;
+
+				@media (max-width: $size-desktop-min) {
+					font-size: vw($label-place-font-size-mobile);
+				}
+
+				i {
+					color: $require-top-font-color;
+					opacity: 0;
+				}
+			}
+
+			.fieldtext,
+			.fieldcheckbox,
+			.fieldradio,
+			.fieldtextarea,
+			.fieldtextaudio {
+				padding-top: vw($inputsize * 0.32);
+				height: vw($inputsize);
+			}
+
+			.fieldselect {
+				height: vw($inputsize);
+
+				select {
+					height: vw($inputsize);
+					padding-top: vw($inputsize * 0.4);
+				}
+			}
+		}
+
+		&.placeicon,
+		.placeicon {
+			.fieldtext,
+			.fieldcheckbox,
+			.fieldradio,
+			.fieldtextarea,
+			.fieldtextaudio,
+			.fieldselect {
+				padding-right: vw($field-icon-size + 20);
+			}
+
+			&:after,
+			&:before {
+				transition: opacity 0.4s ease-in-out;
+				content: '';
+				display: block;
+				position: absolute;
+				width: vw($field-icon-size);
+				height: vw($field-icon-size);
+				top: 50%;
+				right: vw(20);
+				transform: translate(0, -50%);
+				background: no-repeat center;
+				background-size: contain;
+				opacity: 0;
+			}
+		}
+
+		.placeicon {
+			position: relative;
+			display: block;
+		}
+
+		&.error.placeicon:after,
+		&.error .placeicon:after {
+			background-image: $field-icon-error-image;
+			opacity: 1;
+		}
+
+		&.valid.placeicon:after,
+		&.valid .placeicon:after {
+			background-image: $field-icon-valid-image;
+			opacity: 1;
+		}
+
+		/* modificador de borda apenas em baixo */
+		&.underborder {
+			.fieldtext,
+			.fieldcheckbox,
+			.fieldradio,
+			.fieldtextarea,
+			.fieldtextaudio,
+			.fieldselect {
+				border-width: 1px;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+				border-color: $gray;
+				border-radius: 0;
+
+				&:focus {
+					border-bottom-color: $field-under-border-color;
+				}
+			}
+		}
+	}
+
+	/* padrao para campos */
+	.fieldtext,
+	.fieldcheckbox,
+	.fieldradio,
+	.fieldtextarea,
+	.fieldtextaudio,
+	.fieldselect {
+		font-family: $font;
+		font-size: vw($field-font-size);
+		width: 100%;
+		height: vw($field-height);
+		border: 1px solid $field-border-color;
+		border-radius: vw($field-radius);
+		background: $field-background-color no-repeat 95% center;
+		background-size: auto vw(21);
+		resize: none;
+		color: $field-font-color;
+
+		box-sizing: border-box;
+
+		@media (max-width: $size-desktop-min) {
+			font-size: vw($field-font-size-mobile);
+		}
+
+		&[data-rule-money] {
+			text-align: right;
+		}
+
+		&[disabled] {
+			background-color: rgba($field-background-color, 0.3);
+			border-color: rgba($field-border-color, 0.3);
+		}
+
+		&.error {
+			border-color: $red;
+		}
+	}
+
+	/* campos de texto */
+	.fieldtext,
+	.fieldtextarea,
+	.fieldtextaudio {
+		padding: vw($field-vertical-padding) vw($field-horizontal-padding);
+
+		color: $field-font-color;
+
+		@media (max-width: $size-desktop-min) {
+		}
+
+		&.small {
+			font-size: vw($field-small-font-size);
+
+			@media (max-width: $size-desktop-min) {
+				font-size: vw($field-small-font-size-mobile);
+			}
+		}
+	}
+
+	.fieldtextarea,
+	.fieldtextaudio {
+		padding: vw($field-textarea-vertical-padding) vw($field-textarea-horizontal-padding);
+		height: auto;
+		min-height: vw(200);
+
+		@media (max-width: $size-desktop-min) {
+		}
+	}
+
+	.fieldtextaudio {
+		position: relative;
+		min-height: 0;
+		margin-bottom: vw(30);
+
+		&__area {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			min-width: 100%;
+			max-width: 100%;
+			outline: none;
+			height: auto;
+			min-height: vw(200);
+
+			color: $field-font-color;
+
+			.small & {
+				font-size: vw($field-small-font-size);
+
+				@media (max-width: $size-desktop-min) {
+					font-size: vw($field-small-font-size-mobile);
+				}
+			}
+		}
+
+		&__button {
+			position: absolute;
+			display: table-cell;
+			border-radius: 100vw;
+			width: vw(70);
+			height: vw(70);
+			overflow: hidden;
+			text-align: center;
+			vertical-align: middle;
+			color: white;
+			background-color: $primary;
+
+			bottom: vw(-35);
+			right: vw(-35);
+
+			$color-background: $primary;
+
+			@for $i from 0 through 100 {
+				$deg: 90deg + (3.6 * $i);
+
+				&--#{$i},
+				&[data-deg='#{$i}'] {
+					$direction: if($i < 51, right, left);
+					$color: if($i < 51, $color-background, $primary-hover);
+
+					background: linear-gradient(to #{$direction}, #{$color} 50%, transparent 50%), linear-gradient(#{$deg}, $primary-hover 50%, $color-background 50%);
+
+					.fieldtextaudio__button-trigger {
+						opacity: 0;
+					}
+
+					.fieldtextaudio__button-counter {
+						opacity: 1;
+					}
+
+					&::before {
+						transform: scale(0.8);
+					}
+				}
+			}
+
+			&::before {
+				transition: transform 0.6s 0.4s ease-in-out;
+				content: '';
+				align-items: center;
+				background-color: $primary;
+				border-radius: 50%;
+				display: inline-flex;
+				height: 100%;
+				justify-content: center;
+				left: 0;
+				position: absolute;
+				top: 0;
+				transform: scale(1);
+				width: 100%;
+				z-index: 1;
+			}
+
+			&-trigger,
+			&-counter {
+				transition: opacity 0.4s ease-in-out;
+				position: absolute;
+				z-index: 3;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				opacity: 0;
+			}
+
+			&-trigger {
+				width: 80%;
+				height: 80%;
+				opacity: 1;
+			}
+		}
+
+		span.error {
+			left: 0;
+			top: 102%;
+		}
+	}
+
+	.fieldtext:disabled,
+	.fieldtext:read-only,
+	.fieldtextarea:disabled,
+	.fieldtextarea:read-only {
+		background-color: #f0f0f0;
+	}
+
+	/* campo select */
+	.fieldselect {
+		position: relative;
+
+		&:after {
+			display: block;
+			content: '';
+			position: absolute;
+			top: 1px;
+			bottom: 1px;
+			right: 1px;
+			width: vw(48);
+			transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+			background: $white $field-select-image no-repeat center;
+			background-size: vw(10) auto;
+			border-radius: vw($field-radius);
+			pointer-events: none;
+		}
+
+		&--small {
+			&:after {
+				width: vw(28);
+			}
+		}
+
+		&--multiselect {
+			height: inherit;
+		}
+
+		&--alignselfend {
+			align-self: flex-end;
+		}
+
+		&--max {
+			@media (min-width: $size-desktop-min) {
+				max-width: 50%;
+			}
+		}
+
+		&:focus:after {
+			background-image: $field-select-open-image;
+		}
+
+		select {
+			background: transparent;
+			border: none;
+			height: vw($field-height - 2);
+			padding: vw($field-select-vertical-padding) vw($field-select-horizontal-padding);
+			/* If you add too much padding here, the options won't show in IE */
+			width: 100%;
+
+			color: $field-font-color;
+
+			@media (max-width: $size-desktop-min) {
+				&[data-customselect] {
+					height: auto;
+				}
+			}
+		}
+
+		.select2-container {
+			@media (max-width: $size-desktop-min) {
+				width: 100%;
+
+				.error & {
+					border-color: $red !important;
+				}
+			}
+		}
+
+		&.small select {
+			font-size: vw($field-small-font-size);
+
+			@media (max-width: $size-desktop-min) {
+				font-size: vw($field-small-font-size-mobile);
+			}
+		}
+
+		&__custom {
+			align-items: center;
+			background: $white no-repeat 95% center;
+			background-size: auto vw(21);
+			color: $field-font-color;
+			cursor: pointer;
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			margin: 0 !important;
+			min-width: 100%;
+			padding: vw($field-select-vertical-padding) vw($field-select-horizontal-padding);
+			width: 100%;
+
+			@media (max-width: $size-desktop-min) {
+				padding: 0 vw(20);
+			}
+
+			& > * {
+				pointer-events: none;
+			}
+
+			&.disabled {
+				opacity: 0.5;
+			}
+
+			&:not(.checked) {
+				.fieldselect__custom__image {
+					background: $white;
+				}
+			}
+
+			&:not(.checked .disabled) {
+				&:hover {
+					background: $background-secondary;
+				}
+			}
+
+			&__input {
+				left: 0;
+				opacity: 0;
+				position: absolute;
+				top: 0;
+			}
+
+			&__image {
+				background: $primary;
+				box-shadow: 0 0 vw(5) rgba($border-primary, 0.5);
+				display: block;
+				margin-right: vw($common-space);
+				padding: vw(3);
+				width: vw(50) !important;
+			}
+
+			&__price {
+				font-weight: bold;
+				margin-left: auto;
+				width: auto !important;
+
+				&.left {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	/* botao de envio de arquivo*/
+	.fieldfile {
+		position: relative;
+
+		input {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1;
+			opacity: 0;
+		}
+
+		.fieldfile-name {
+			position: relative;
+			z-index: 2;
+			display: block;
+			line-height: vw(42);
+
+			&:before {
+				content: '';
+				display: inline-block;
+				margin: vw(-6) vw($common-space) 0 0;
+				width: vw(27);
+				height: vw(22);
+
+				background: url(../static/images/ico__file.png) no-repeat center;
+				background-size: contain;
+				vertical-align: middle;
+			}
+
+			&:hover:before,
+			&.active:before {
+				background-image: url(../static/images/ico__file--active.png);
+			}
+		}
+
+		span.error {
+			top: 100%;
+		}
+	}
+
+	/* botoes do formulario */
+	.fieldbutton,
+	.fieldfile .fieldfile-name {
+		@extend #{$buttonclass};
+		cursor: pointer;
+		width: 100%;
+
+		@media (max-width: $size-desktop-min) {
+			// display: block;
+		}
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: default;
+		}
+
+		&.onright {
+			margin-right: 0;
+		}
+
+		&--big {
+			@extend #{$buttonclassbig};
+		}
+
+		&--invert {
+			@extend #{$buttonclassinvert};
+		}
+	}
+
+	/* Campo checkbox e campo radio */
+	.fieldcheckbox,
+	.fieldradio {
+		background: transparent;
+		border: 1px solid transparent;
+		box-sizing: border-box;
+		height: vw($field-checked-size);
+		position: relative;
+		width: vw($field-checked-size);
+		border-radius: vw($field-radius / 2);
+		margin-right: vw($common-space);
+		vertical-align: top;
+
+		&:after,
+		&:before {
+			background: $field-checkbox-background-color center;
+			background-size: vw($field-checked-size * 0.6);
+			background-repeat: no-repeat;
+			border: 1px solid $field-checkbox-border-color;
+			border-radius: vw($field-radius / 2);
+			box-sizing: border-box;
+			content: '';
+			height: calc(100% + 2px);
+			left: -2px;
+			position: absolute;
+			top: -2px;
+			width: calc(100% + 2px);
+		}
+
+		&:after {
+			z-index: 1;
+		}
+
+		&:before {
+			background: $field-checked-background-color center;
+			background-size: vw($field-checked-size * 0.6);
+			background-repeat: no-repeat;
+			border: 1px solid $field-checked-border-color;
+			border-radius: vw($field-radius / 2);
+			opacity: 0;
+			transition: all 0.4s linear;
+			z-index: 2;
+		}
+
+		&:checked:before {
+			opacity: 1;
+		}
+
+		&[readonly]:before {
+			opacity: 1;
+		}
+
+		&:focus {
+			&:after {
+				border-color: $black;
+			}
+		}
+
+		&.error {
+			&:after,
+			&:before {
+				border-color: $field-error-border-color;
+				background-color: $field-error-background-color;
+			}
+		}
+	}
+
+	.error[data-field-holder] {
+		.fieldcheckbox,
+		.fieldradio {
+			&:after,
+			&:before {
+				border-color: $field-error-border-color;
+				background-color: $field-error-background-color;
+			}
+		}
+	}
+
+	.fieldcheckbox:after {
+		background-image: $field-checkbox-image;
+	}
+	.fieldcheckbox:before {
+		background-image: $field-checkbox-checked-image;
+	}
+
+	.fieldradio:after {
+		background-image: $field-radio-image;
+	}
+	.fieldradio:before {
+		background-image: $field-radio-checked-image;
+	}
+
+	label,
+	.fieldlabel {
+		> span.fieldcheckbox-label,
+		> span.fieldradio-label {
+			display: inline-block;
+			vertical-align: middle;
+			margin-bottom: 0;
+			max-width: calc(100% - 0.31rem);
+			font-size: vw($field-list-font-size);
+
+			@media (max-width: $size-desktop-min) {
+				vertical-align: middle;
+				font-size: vw($field-list-font-size-mobile);
+			}
+
+			a {
+				color: $link-font-color;
+			}
+		}
+	}
+
+	/* Campo checkbox ou radio com estilo de botao*/
+	.fieldradio-button,
+	.fieldcheckbox-button {
+		span.error {
+			bottom: calc(100% + #{vw(5)});
+			top: auto;
+		}
+
+		input[type='radio'],
+		input[type='checkbox'] {
+			cursor: pointer;
+			height: 100%;
+			left: 0;
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+
+			&:checked ~ span {
+				background: rgba($primary, 0.3);
+			}
+		}
+	}
+
+	/* estilo para botoes tipo ancora */
+	.fieldlink {
+		font-family: $font;
+		color: $link-font-color;
+		font-weight: $link-font-weight;
+		text-decoration: $link-font-decoration;
+		text-transform: $link-font-transform;
+		margin: vw(7) 0;
+
+		font-size: vw($field-font-size);
+
+		@media (max-width: $size-desktop-min) {
+			font-size: vw($field-font-size-mobile);
+		}
+	}
+
+	/* Estilo para elemento contendo mensagem de texto quando formulario retornar erro (lista de erros) */
+	.formerrors {
+		color: $error-font-color;
+		font-size: vw($text-font-size);
+		margin-bottom: 0;
+
+		@media (max-width: $size-desktop-min) {
+			font-size: vw($text-font-size-mobile);
+		}
+
+		&:not(:empty) {
+			margin-bottom: vw($common-space);
+
+			@media (max-width: $size-desktop-min) {
+				margin-bottom: vw($single-space);
+			}
+		}
+	}
+
+	/* Estilo para elemento contendo mensagem de texto quando formulario retornar sucesso */
+	.formsuccess {
+		color: $success-font-color;
+		font-size: vw($text-font-size);
+
+		@media (max-width: $size-desktop-min) {
+			font-size: vw($text-font-size-mobile);
+		}
+
+		&:not(:empty) {
+			margin-bottom: vw($common-space);
+
+			@media (max-width: $size-desktop-min) {
+				margin-bottom: vw($single-space);
+			}
+		}
+	}
+
+	/* modificador de estilo para campos com corretos*/
+	.valid {
+		.fieldtext,
+		.fieldtextarea,
+		.fieldtextaudio,
+		.fieldselect {
+			border-color: $field-valid-border-color !important;
+		}
+
+		.fieldradio-button {
+			outline: 1px solid $field-valid-border-color;
+		}
+	}
+
+	/* modificador de estilo para campos com erro*/
+	.error {
+		.fieldtext,
+		.fieldtextarea,
+		.fieldtextaudio,
+		.fieldselect {
+			border-color: $field-error-border-color !important;
+		}
+
+		.fieldradio-button {
+			outline: 1px solid $field-error-border-color;
+		}
+
+		&.error-on-right {
+			position: relative;
+
+			span.error {
+				right: 0;
+			}
+		}
+	}
+
+	/* mensagem de erro individual*/
+	span.error {
+		font-family: $font;
+		color: $error-font-color;
+		white-space: nowrap;
+		position: absolute;
+		margin-top: vw(56);
+
+		font-size: vw($error-font-size);
+
+		.relative-error & {
+			position: relative;
+			white-space: pre-wrap;
+		}
+
+		@media (max-width: $size-desktop-min) {
+			margin-bottom: vw($error-font-size-mobile);
+			max-width: vw(400);
+			text-overflow: ellipsis;
+			overflow: hidden;
+			line-height: 1.2em;
+			position: relative;
+			margin-top: 0;
+		}
+	}
+
+	/* Abas / Componente Tab dentro do Form*/
+	.formtab,
+	.fieldwrapper {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+
+		&__header {
+			font-family: $font;
+			margin-bottom: vw($double-space);
+		}
+
+		&__header-title {
+			font-family: $font;
+			font-size: vw($subtitle-font-size);
+			line-height: 1.2em;
+			font-weight: 600;
+			margin: 0;
+
+			@media (max-width: $size-desktop-min) {
+				font-size: vw($subtitle-font-size-mobile);
+			}
+		}
+
+		&__header-description {
+			font-family: $font;
+			font-size: vw($subdescription-font-size);
+			font-weight: 400;
+
+			@media (max-width: $size-desktop-min) {
+				font-size: vw($subdescription-font-size-mobile);
+			}
+		}
+	}
+
+	.formtab__steps {
+		display: block;
+		width: 100%;
+		height: vw(3);
+		margin-top: vw(-15);
+		margin-bottom: vw(30);
+
+		&-wrapper {
+			position: absolute;
+			left: 0;
+			width: 100%;
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 vw(60);
+			box-sizing: border-box;
+		}
+
+		&-step {
+			margin: 0 vw(8);
+			flex: 1;
+			height: 1px;
+			border-radius: 2px;
+			background: $step-color;
+			opacity: 0.3;
+		}
+
+		&[data-step='1'],
+		&[data-step='2'],
+		&[data-step='3'],
+		&[data-step='4'],
+		&[data-step='5'],
+		&[data-step='6'],
+		&[data-step='7'],
+		&[data-step='8'],
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(1) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='2'],
+		&[data-step='3'],
+		&[data-step='4'],
+		&[data-step='5'],
+		&[data-step='6'],
+		&[data-step='7'],
+		&[data-step='8'],
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(2) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='3'],
+		&[data-step='4'],
+		&[data-step='5'],
+		&[data-step='6'],
+		&[data-step='7'],
+		&[data-step='8'],
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(3) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='4'],
+		&[data-step='5'],
+		&[data-step='6'],
+		&[data-step='7'],
+		&[data-step='8'],
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(4) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='5'],
+		&[data-step='6'],
+		&[data-step='7'],
+		&[data-step='8'],
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(5) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='6'],
+		&[data-step='7'],
+		&[data-step='8'],
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(6) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='7'],
+		&[data-step='8'],
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(7) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='8'],
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(8) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='9'],
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(9) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='10'],
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(10) {
+				opacity: 1;
+			}
+		}
+
+		&[data-step='11'] {
+			.formtab__steps-step:nth-child(11) {
+				opacity: 1;
+			}
+		}
+	}
+
+	.fieldwrapper {
+		display: block;
+
+		max-width: vw(1090);
+		padding-left: vw(280);
+
+		.formerrors {
+			text-align: right;
+			align-self: center;
+			margin-bottom: 0;
+		}
+	}
+
+	/* Padroes de tamanhos e reset de espacamento...*/
+	.formsuccess,
+	.formerrors,
+	.fieldspacer,
+	.forminfo,
+	label,
+	.fieldlabel {
+		margin: 0 vw($field-spacing) 0 0;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	// tamanhos utilizando flex
+	.formsuccess,
+	.formerrors,
+	.fieldspacer,
+	.forminfo,
+	label,
+	.fieldlabel {
+		flex: 20;
+	}
+
+	* {
+		@for $i from 1 through 200 {
+			&[data-flex='#{$i / 10}'] {
+				flex: #{$i / 10};
+			}
+		}
+	}
+
+	/* Linha de espaco tipo HR */
+	.fieldspacer {
+		border: 0;
+		height: 1px;
+		width: 100%;
+		padding: 0;
+
+		margin: vw($double-space) 0;
+		background: $spacer-color;
+		visibility: visible;
+	}
+}
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+	border: none;
+	margin: 0 auto;
+	padding: 0;
+	width: 100%;
+	display: inline-block;
+
+	> input {
+		display: none;
+	}
+	> label:before {
+		width: 100%;
+		height: 100%;
+		display: inline-block;
+		content: '';
+		background: no-repeat center;
+		background-size: contain;
+	}
+
+	> .half:before {
+		content: '';
+		position: absolute;
+	}
+
+	> label {
+		width: 16%;
+		height: 44px;
+		margin: 0 2%;
+		color: #ddd;
+		float: right;
+		background: no-repeat center;
+		background-size: contain;
+		background-image: url(../static/images/form-icons/star--white.png);
+	}
+
+	> input:first-child + label {
+		margin-right: 0;
+	}
+	> label:last-child {
+		margin-left: 0;
+	}
+
+	> input:checked ~ label:before, /* show gold star when clicked */
+    &:not(:checked) > label:hover:before, /* hover current star */
+    &:not(:checked) > label:hover ~ label:before {
+		background-image: url(../static/images/form-icons/star--green.png);
+	} /* hover previous stars in list */
+
+	> input:checked + label:hover:before, /* hover current star when changing rating */
+    > input:checked ~ label:hover:before,
+    > label:hover ~ input:checked ~ label:before, /* lighten current selection */
+    > input:checked ~ label:hover ~ label:before {
+		background-image: url(../static/images/form-icons/star--green.png);
+	}
+}

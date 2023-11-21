@@ -1,0 +1,34 @@
+@import 'node_modules/normalize-scss/sass/normalize/import-now';
+@import 'node_modules/jquery-modal/jquery.modal.min';
+
+// General
+@import './config/variables';
+@import './config/mixins';
+@import './config/functions';
+@import './config/helper';
+@import './config/layout';
+@import './config/form';
+@import './config/icon';
+@import './config/flickity';
+@import './config/cookies';
+@import './config/fontawesome';
+
+// Elements
+@import './components/header';
+@import './components/menu';
+@import './components/footer';
+@import './components/stepper';
+@import './components/radios';
+
+// Modals
+@import './components/modals/base';
+@import './components/modals/confirmation';
+@import './components/modals/error';
+@import './components/modals/success';
+@import './components/modals/warranty';
+
+// Pages
+@import './pages/home';
+@import './pages/purchase';
+@import './pages/schedule';
+@import './pages/unavailable';

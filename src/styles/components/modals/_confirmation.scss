@@ -1,0 +1,261 @@
+#confirmation-modal {
+	width: 90%;
+	margin: vw(40) auto vw(40) auto;
+	height: auto;
+	position: relative;
+
+	@media (min-width: $size-desktop-min) {
+		width: vw(460);
+		margin: 0 auto 0 auto;
+	}
+
+	.modal {
+		&-body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+		}
+
+		&-dialog {
+			height: unset;
+		}
+
+		&-title {
+			h2 {
+				font-weight: bold;
+				font-size: vw(26);
+				line-height: vw(28);
+				text-align: center;
+				color: $blue-strong;
+				margin: vw(28) 0 0 0;
+
+				@media (min-width: $size-desktop-min) {
+					font-size: vw(32);
+					line-height: vw(34);
+				}
+			}
+
+			.thin {
+				font-weight: 400;
+			}
+		}
+
+		&-spacer {
+			height: 1px;
+			width: 80%;
+			margin: vw(21) 0;
+			background-color: black;
+		}
+
+		&-text {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+
+			h1 {
+				margin: 0;
+				width: 100%;
+			}
+
+			p {
+				width: 100%;
+				margin: 0;
+				margin-right: auto;
+				padding: 0 vw(30);
+
+				@media (min-width: $size-desktop-min) {
+					padding: 0 vw(50);
+				}
+			}
+
+			.name {
+				width: 100%;
+				font-weight: bold;
+				font-size: vw(15);
+				line-height: vw(16);
+			}
+
+			.address {
+				width: 100%;
+				font-weight: 400;
+				font-size: vw(15);
+				line-height: vw(16);
+			}
+
+			.brand {
+				width: 100%;
+				font-weight: normal;
+				font-size: vw(15);
+				line-height: vw(20);
+				color: $blue-strong;
+				padding-top: vw(14);
+				padding-bottom: vw(14);
+			}
+
+			.question {
+				width: 100%;
+				font-weight: bold;
+				font-size: vw(15);
+				line-height: vw(18);
+				color: $black;
+				margin-top: vw(4);
+			}
+
+			.answer {
+				width: 100%;
+				font-weight: 400;
+				font-size: vw(13);
+				line-height: vw(18);
+				color: $black;
+			}
+
+			.warranty-check--div {
+				margin-right: auto;
+			}
+		}
+
+		&-header {
+			width: 90%;
+			padding: vw(20) 0;
+			@include gradientBgLeftRight();
+			border-radius: 99px;
+			margin: 0 0 vw(24) 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			@media (min-width: $size-desktop-min) {
+				width: vw(409);
+			}
+
+			&--wrapper {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.icon {
+				width: vw(30);
+				height: vw(30);
+ 				position: relative;
+				left: vw(40);
+				border: none;	
+				outline: none;
+ 			}
+
+			span {
+				font-weight: bold;
+				font-size: vw(15);
+				line-height: vw(20);
+				color: $cyan;
+				padding: 0 vw(50);
+				margin: vw(4) 0 vw(4) 0;
+
+				@media (min-width: $size-desktop-min) {
+					margin: vw(7) 0 vw(7) 0;
+				}
+			}
+
+			p {
+				margin: 0;
+				font-weight: bold;
+				font-size: vw(22);
+				line-height: vw(26);
+				color: #ffffff;
+				padding: 0 vw(50);
+			}
+
+			p.price {
+				font-size: vw(30);
+			}
+		}
+
+		&-featured {
+			width: 90%;
+			height: vw(114);
+			@include gradientBgLeftRight();
+			border-radius: 99px;
+			margin: vw(12) 0 vw(35) 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			@media (min-width: $size-desktop-min) {
+				width: vw(409);
+			}
+
+			span {
+				font-weight: bold;
+				font-size: vw(15);
+				line-height: vw(20);
+				color: $cyan;
+				padding: 0 vw(40);
+				margin: 0 0 vw(2) 0;
+
+				@media (min-width: $size-desktop-min) {
+					margin: 0 0 vw(7) 0;
+				}
+			}
+
+			p {
+				margin: 0;
+				font-weight: bold;
+				font-size: vw(24);
+				line-height: vw(26);
+				color: #ffffff;
+				padding: 0 vw(40);
+			}
+		}
+
+		&-button {
+			cursor: pointer;
+			@include gradientBgTopDown();
+			color: white;
+			width: 80%;
+			height: vw(50);
+			border-radius: vw(15);
+			font-weight: 600;
+			font-size: vw(18);
+			line-height: vw(21);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-decoration: none;
+			margin: 0 0 vw(12) 0;
+			border: none;
+			text-transform: unset;
+
+			@media (min-width: $size-desktop-min) {
+				width: vw(358);
+			}
+
+			&--white {
+				font-weight: bold;
+				font-size: vw(16);
+				line-height: vw(18);
+				display: flex;
+				align-items: center;
+				text-align: center;
+				color: $blue-strong;
+				border-radius: vw(4);
+				border-radius: vw(15);
+				border: 1px solid $blue-strong;
+				background: white;
+			}
+		}
+
+		&-disclaimer {
+			margin: 0 0 vw(35);
+			padding: 0 vw(40);
+			font-weight: bold;
+			font-size: vw(13);
+			line-height: vw(14);
+			color: $black;
+			width: 100%;
+		}
+	}
+}

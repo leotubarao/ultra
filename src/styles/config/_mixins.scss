@@ -1,0 +1,272 @@
+/* -------------------
+---- MIXINS
+------------------- */
+
+@mixin element($elements, $modifier: false) {
+	@each $element in $elements {
+		@if $modifier {
+			&__#{$element}--#{$modifier} {
+				@content;
+			}
+		} @else {
+			&__#{$element} {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin descendant($elements, $modifier: false) {
+	$scope: last-selector(#{&});
+
+	@each $element in $elements {
+		@if $modifier {
+			& #{change-element($scope) + $element}--#{$modifier} {
+				@content;
+			}
+		} @else {
+			& #{change-element($scope) + $element} {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin modifier($name) {
+	&--#{$name} {
+		@content;
+	}
+}
+
+@mixin root-modifier($name) {
+	$block: get-block(last-selector(#{&}));
+
+	@at-root #{$block}--#{$name} & {
+		@content;
+	}
+}
+
+@mixin scope-modifier($name) {
+	$scope: last-selector(#{&});
+	$block: get-scope(#{&});
+
+	@at-root #{$block}--#{$name} #{$scope} {
+		@content;
+	}
+}
+
+@mixin parent-modifier($name) {
+	$scope: last-selector(#{&});
+	$block: get-parent(#{&});
+
+	@at-root #{$block}--#{$name} #{$scope} {
+		@content;
+	}
+}
+
+@mixin media($min) {
+	@media (min-width: $min) {
+		@content;
+	}
+}
+
+@mixin media-inverse($max) {
+	@media (max-width: $max) {
+		@content;
+	}
+}
+
+@mixin media-interval($min, $max) {
+	@media (min-width: $min) and (max-width: $max) {
+		@content;
+	}
+}
+
+/* -------------------
+---- PROPERTIES
+------------------- */
+
+@mixin center($horizontal: true, $vertical: false) {
+	position: absolute;
+	$X: 0;
+	$Y: 0;
+
+	@if $horizontal {
+		left: 50%;
+		$X: -50%;
+	}
+
+	@if $vertical {
+		top: 50%;
+		$Y: -50%;
+	}
+
+	-moz-transform: translateX($X) translateY($Y);
+	-webkit-transform: translateX($X) translateY($Y);
+	-o-transform: translateX($X) translateY($Y);
+	-ms-transform: translateX($X) translateY($Y);
+	transform: translateX($X) translateY($Y);
+}
+
+@mixin keyframes($name) {
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+
+	@-keyframes #{$name} {
+		@content;
+	}
+}
+
+@mixin animation($config...) {
+	-webkit-animation: $config;
+	/* Safari 4+ */
+	-moz-animation: $config;
+	/* Fx 5+ */
+	-o-animation: $config;
+	/* Opera 12+ */
+	animation: $config;
+	/* IE 10+, Fx 29+ */
+}
+
+@mixin transition($config...) {
+	-webkit-transition: $config;
+	/* Safari 4+ */
+	-moz-transition: $config;
+	/* Fx 5+ */
+	-o-transition: $config;
+	/* Opera 12+ */
+	transition: $config;
+	/* IE 10+, Fx 29+ */
+}
+
+@mixin transform($config...) {
+	-webkit-transform: $config;
+	/* Safari 4+ */
+	-moz-transform: $config;
+	/* Fx 5+ */
+	-o-transform: $config;
+	/* Opera 12+ */
+	transform: $config;
+	/* IE 10+, Fx 29+ */
+}
+
+@mixin grayscale($value) {
+	-webkit-filter: #{'grayscale(#{$value})'};
+	-moz-filter: #{'grayscale(#{$value})'};
+	-o-filter: #{'grayscale(#{$value})'};
+	filter: #{'grayscale(#{$value})'};
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+	@if $inset {
+		-webkit-box-shadow: inset $top $left $blur $color;
+		-moz-box-shadow: inset $top $left $blur $color;
+		box-shadow: inset $top $left $blur $color;
+	} @else {
+		-webkit-box-shadow: $top $left $blur $color;
+		-moz-box-shadow: $top $left $blur $color;
+		box-shadow: $top $left $blur $color;
+	}
+}
+
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-o-border-radius: $radius;
+}
+
+@mixin border-right-radius($radius) {
+	border-top-right-radius: $radius;
+	-webkit-border-top-right-radius: $radius;
+	-moz-border-top-right-radius: $radius;
+	-ms-border-top-right-radius: $radius;
+	-o-border-top-right-radius: $radius;
+
+	border-bottom-right-radius: $radius;
+	-webkit-border-bottom-right-radius: $radius;
+	-moz-border-bottom-right-radius: $radius;
+	-ms-border-bottom-right-radius: $radius;
+	-o-border-bottom-right-radius: $radius;
+}
+
+@mixin border-left-radius($radius) {
+	border-top-left-radius: $radius;
+	-webkit-border-top-left-radius: $radius;
+	-moz-border-top-left-radius: $radius;
+	-ms-border-top-left-radius: $radius;
+	-o-border-top-left-radius: $radius;
+
+	border-bottom-left-radius: $radius;
+	-webkit-border-bottom-left-radius: $radius;
+	-moz-border-bottom-left-radius: $radius;
+	-ms-border-bottom-left-radius: $radius;
+	-o-border-bottom-left-radius: $radius;
+}
+
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-o-border-radius: $radius;
+}
+
+/* -------------------
+---- FONTS MIXINS
+------------------- */
+
+@mixin font($font-name, $font-size: 2.2rem, $line-height: 1.2em) {
+	font-family: $font-name, 'sans-serif';
+	font-size: $font-size;
+	line-height: $line-height;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin gradient($direction, $list) {
+	background: -webkit-linear-gradient($direction, $list);
+	background: -moz-linear-gradient($direction, $list);
+	background: -o-linear-gradient($direction, $list);
+	background: linear-gradient($direction, $list);
+}
+
+@mixin text-hide {
+	font: 0/0 a;
+}
+
+@mixin image-replace($url, $width, $height) {
+	@include text-hide();
+	width: $width;
+	height: $height;
+	background-image: url($url);
+	background-size: 100% auto;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+@mixin gradientBg {
+	background: linear-gradient(13.93deg, #000fff 21.05%, #00ffff 169.31%);
+}
+
+@mixin gradientBgTopDown {
+	background: linear-gradient(0deg, #000fff 21.05%, #00ffff 169.31%);
+}
+
+@mixin gradientBgLeftRight {
+	background: linear-gradient(90.03deg, #000fff 0.03%, #000fff 0.04%, #00ffff 120.41%);
+}
+
+@mixin gradientBgLeftRightFade {
+	background: linear-gradient(90.01deg, #000fff 0.01%, #00ffff 152.35%);
+}

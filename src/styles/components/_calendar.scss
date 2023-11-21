@@ -1,0 +1,336 @@
+.calendar {
+	margin-right: auto;
+
+	&__section {
+		background: #fff;
+		overflow: hidden;
+		width: 100%;
+	}
+
+	&__description {
+		h3 {
+			margin: 0;
+			font-weight: bold;
+			font-size: vw(15);
+			line-height: vw(20);
+			color: $black;
+		}
+
+		@media (min-width: $size-desktop-min) {
+			padding: vw(30) 0 vw(20);
+			font-size: vw(14);
+		}
+	}
+
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		margin-top: vw(30);
+
+		@media (min-width: $size-desktop-min) {
+			width: 80%;
+			margin-top: vw(14);
+		}
+	}
+
+	&__column {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		@media (min-width: $size-desktop-min) {
+			display: block;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	.simple-calendar header {
+		height: vw(75);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: vw(14);
+
+		@media (min-width: $size-desktop-min) {
+			height: vw(80);
+		}
+
+		h2 {
+			font-weight: 400;
+			color: $blue-strong;
+			font-style: normal;
+			font-weight: bold;
+			font-size: vw(24);
+		}
+	}
+
+	.simple-calendar header .btn-prev,
+	.simple-calendar header .btn-next {
+		height: vw(40);
+		width: vw(40);
+	}
+
+	.simple-calendar header .simple-calendar-btn:before {
+		content: '';
+		position: absolute;
+		border-style: solid;
+		border-width: 3px 3px 0 0;
+		transform: rotate(45deg) scale(0.6);
+		transform-origin: center center;
+		margin-top: 2px;
+	}
+
+	.opacity {
+		position: absolute;
+		opacity: 0;
+		width: 0;
+	}
+
+	input[type='radio'] + label {
+		font-weight: normal;
+		cursor: pointer;
+		width: vw(40);
+		height: vw(40);
+		margin: auto auto !important;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	input[type='radio']:checked + label {
+		font-weight: bold;
+		font-weight: normal;
+		font-size: vw(16);
+		line-height: vw(18);
+		text-align: center;
+		background-color: $blue-strong;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 99px;
+		margin: auto;
+	}
+}
+
+.simple-calendar {
+	display: none;
+	position: relative;
+	// overflow: hidden;
+	//text-transform: capitalize;
+	text-align: center;
+	font: vw(15) inherit;
+	color: #545a5c;
+}
+.simple-calendar.simplecalendar--item-active {
+	display: block;
+}
+.simple-calendar a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+.simple-calendar header .simple-calendar-btn {
+	display: inline-block;
+	position: absolute;
+	width: vw(30);
+	height: vw(30);
+	text-align: center;
+	line-height: vw(30);
+	color: $blue-strong;
+}
+.simple-calendar header .simple-calendar-btn:hover {
+	background: $blue-strong;
+	color: white;
+}
+.simple-calendar header .simple-calendar-btn:before {
+	content: '';
+	position: absolute;
+	top: vw(9);
+	left: vw(8);
+	width: vw(16);
+	height: vw(16);
+	border-style: solid;
+	border-width: 5px 5px 0 0;
+	transform: rotate(45deg);
+	transform-origin: center center;
+ }
+.simple-calendar header .btn-prev {
+	left: 0;
+	transform: rotate(-180deg);
+}
+.simple-calendar header .btn-next {
+	right: 0;
+}
+.simple-calendar header .btn-next:before {
+	transform: rotate(45deg);
+}
+.simple-calendar header .month {
+	text-transform: uppercase;
+	padding: 0;
+	margin: 0;
+}
+.simple-calendar header .month .year {
+	font-size: 0.6em;
+	font-weight: 100;
+}
+.simple-calendar table {
+	width: 100%;
+	margin: vw(20) 0 0 0;
+	border-spacing: 0px;
+}
+.simple-calendar thead {
+	font-size: 1.2em;
+	font-weight: 600;
+}
+.simple-calendar td {
+	padding: 0.6em 0.1em;
+	cursor: pointer;
+	font-weight: normal;
+	font-size: vw(16);
+	line-height: vw(18);
+	align-items: center;
+	text-align: center;
+
+	color: #666666;
+}
+.simple-calendar .day {
+	position: relative;
+	display: inline-block;
+	width: 2.5em;
+	height: 2.5em;
+	line-height: 2.5em;
+	border-radius: 50%;
+	border: 2px solid transparent;
+	cursor: pointer;
+}
+
+.simple-calendar .day.today {
+	background: $blue-strong;
+	color: white;
+}
+
+.simple-calendar .day.today.has-event:after {
+	background: white;
+}
+.simple-calendar .day.wrong-month {
+	color: #cbd1d2;
+}
+
+.simple-calendar .day:hover {
+	border: 2px solid $blue-strong;
+}
+
+.simple-calendar .day:hover,
+.simple-calendar td .day {
+	color: $blue-strong;
+}
+.simple-calendar td.notavailable .day {
+}
+.simple-calendar td.disabled.notavailable .day {
+	border: none !important;
+}
+.simple-calendar td.disabled,
+.simple-calendar td.disabled .day,
+.simple-calendar td.notavailable,
+.simple-calendar td.notavailable .day {
+	color: #545a5c;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.simple-calendar td.notavailable .day {
+}
+
+.simple-calendar .day.wrong-month:hover {
+	border: 2px solid transparent;
+}
+.simple-calendar .day.has-event:after {
+	content: '';
+	position: absolute;
+	top: calc(50% + 0.6em);
+	left: calc(50% - 2px);
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: $blue-strong;
+}
+.simple-calendar .day.disabled {
+	cursor: default;
+}
+
+.simple-calendar .day.disabled:hover {
+	border: 2px solid transparent;
+}
+.simple-calendar .event-container {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: vw(70);
+	background: #545a5c;
+	box-sizing: border-box;
+}
+.simple-calendar .event-container .event-wrapper {
+	overflow-y: auto;
+	max-height: 100%;
+}
+.simple-calendar .event-container .close {
+	position: absolute;
+	width: vw(30);
+	height: vw(30);
+	top: vw(20);
+	right: vw(20);
+	cursor: pointer;
+}
+.simple-calendar .event-container .close:before,
+.simple-calendar .event-container .close:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 2px;
+	height: 100%;
+	background-color: #cbd1d2;
+}
+.simple-calendar .event-container .close:before {
+	transform: rotate(45deg);
+}
+.simple-calendar .event-container .close:after {
+	transform: rotate(-45deg);
+}
+.simple-calendar .event-container .event {
+	position: relative;
+	width: 100%;
+	padding: 1em;
+	margin-bottom: 1em;
+	background: $blue-strong;
+	border-radius: 4px;
+	box-sizing: border-box;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+	text-align: left;
+	color: white;
+}
+.simple-calendar .event-container .event-date {
+	margin-bottom: 1em;
+}
+.simple-calendar .event-container .event-hour {
+	float: right;
+}
+.simple-calendar .event-container .event-summary {
+	font-weight: 600;
+}
+.simple-calendar .filler {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-radius: 50%;
+	background: #545a5c;
+	transform: translate(-50%, -50%);
+}

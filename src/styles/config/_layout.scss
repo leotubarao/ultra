@@ -1,0 +1,194 @@
+/* -------------------
+---- LAYOUT
+------------------- */
+
+html {
+	// definição para automatizar o responsivo do size e basear em VW
+	font-size: mobile-vw(10, true); // para calcular o valor de vw sobre o tamanho do layout-mobile
+
+	@media (min-width: $size-desktop-min) {
+		font-size: desktop-vw(11, true); // para calcular o valor de vw sobre o tamanho do layout-desktop
+	}
+
+	@media (min-width: $size-retina) {
+		font-size: fixed-vw(10); // para travar o layout apos o tamanho maximo de desktop
+	}
+}
+
+body * {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+	font-family: $font;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+
+	&.pages-agendar-bot {
+		background: #1e1e1e;
+	}
+}
+
+button {
+	font-family: $font;
+	text-transform: uppercase;
+}
+
+body {
+	position: relative;
+	font-size: vw(24);
+}
+
+body * {
+	box-sizing: border-box;
+}
+
+@keyframes loadingBar {
+	0% {
+		left: 0%;
+		right: 100%;
+	}
+
+	50% {
+		left: 0%;
+		right: 0%;
+	}
+
+	100% {
+		left: 100%;
+		right: 0%;
+	}
+}
+
+@keyframes loadingText {
+	0% {
+		opacity: 0.1;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0.1;
+	}
+}
+
+.loading {
+	&__wrapper {
+		transition: opacity 0.2s ease-in-out, bottom 0.2s 1s ease-in-out, height 0.2s 1s ease-in-out, background-color 0.2s 1s ease-in-out;
+		position: fixed;
+		bottom: -12px;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 5px;
+		border-top: 2px solid $white;
+		border-bottom: 3px solid $white;
+		box-sizing: content-box;
+		background-color: $white;
+		z-index: 9999;
+		opacity: 0;
+		overflow: hidden;
+
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+
+		.loading & {
+			transition: opacity 0.4s ease-in-out, bottom 0.4s ease-in-out, height 0.5s 4s ease-in-out, background-color 0.5s 4s ease-in-out;
+			bottom: 0px;
+			height: 100%;
+			background-color: $blue-strong;
+			opacity: 1;
+		}
+	}
+
+	&__bar {
+		transition: width 0.2s 1s ease-in-out, height 0.2s 1s ease-in-out;
+		content: '';
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		width: auto;
+		height: 5px;
+		border: 0px solid $white;
+		background: $blue-strong;
+		transform: translateY(-50%);
+
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+
+		&:after {
+			font-family: $font;
+			transition: opacity 0.1s 0 linear;
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 2;
+			opacity: 0;
+			color: $white;
+
+			width: vw(100);
+			height: vw(100);
+		}
+
+		.loading & {
+			transition: width 0.5s 4s ease-in-out, height 0.5s 4s ease-in-out, border-top-width 0.5s 4s ease-in-out, border-bottom-width 0.5s 4s ease-in-out;
+			border-top-width: 0px;
+			border-bottom-width: 0px;
+
+			&:after {
+				transition: opacity 0.5s 4s linear;
+				opacity: 1;
+				background: url(../static/images/logos/loading.svg) no-repeat 100%;
+				background-size: contain;
+ 			}
+		}
+
+		.loading.end-animate & {
+			animation: loadingBar 1s 0.1s 4;
+		}
+	}
+}
+
+.jquery-modal {
+	z-index: 999;
+}
+
+#content {
+	overflow: hidden;
+
+	@media (max-width: 850px) and (min-width: $size-desktop-min) {
+		overflow-x: hidden;
+	}
+}
+.fake-page {
+    width: 100%;
+}
+
+.whatsapp {
+    position: fixed;
+    width: vw(60);
+    height: vw(60);
+    bottom: vw(20);
+    right: vw(20);
+    background-color: $green;
+    color: $white;
+    border-radius: vw(50);
+    text-align: center;
+    font-size: vw(30);
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	text-decoration: none;
+}
